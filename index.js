@@ -10,6 +10,9 @@ app.listen(port,() => {
     console.log("Server works!!!")
 })
 
+app.get('/', (req,res) =>{
+	res.send("server working!!!");
+})
 
 app.get('/download', async (req, res, next) => {
 	try {
