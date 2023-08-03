@@ -1,1 +1,1 @@
-web: node indx.js
+web: node index.js
