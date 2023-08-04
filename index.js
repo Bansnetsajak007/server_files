@@ -16,6 +16,8 @@ app.get('/demo', (req,res) =>{
 	res.json({Username : 'sajak'})
 })
 
+
+//something is wrong with this route goota work on this shit
 app.get('/download', async (req, res, next) => {
 	try {
 		let url = req.query.url;
@@ -41,6 +43,8 @@ app.get('/download', async (req, res, next) => {
 	} catch (err) {
 		console.error(err);
 	}
+
+	res.json({message : 'This route workss!!!'})
 });
 
 app.listen(port,() => {
