@@ -6,12 +6,14 @@ const port = process.env.PORT || 4000;
 const app = express()
 app.use(cors());
 
-app.listen(port,() => {
-    console.log("Server works!!!")
-})
 
 app.get('/', (req,res) =>{
 	res.send("server working!!!");
+})
+
+
+app.get('/demo', (req,res) =>{
+	res.json({Username : 'sajak'})
 })
 
 app.get('/download', async (req, res, next) => {
@@ -35,8 +37,12 @@ app.get('/download', async (req, res, next) => {
 			format: 'mp3',
 			filter: 'audioonly',
 		}).pipe(res);
-
+		
 	} catch (err) {
 		console.error(err);
 	}
 });
+
+app.listen(port,() => {
+	console.log("Server works!!!")
+})
