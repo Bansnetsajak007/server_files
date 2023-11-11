@@ -1,23 +1,16 @@
 const express = require('express')
 const cors = require('cors');
 const ytdl = require('ytdl-core')
-const port = process.env.PORT || 4000;
+const port =  4000;
 
 const app = express()
 app.use(cors());
 
-
-app.get('/', (req,res) =>{
-	res.send("server working!!!");
+app.listen(port,() => {
+    console.log("Server works!!!")
 })
 
 
-app.get('/demo', (req,res) =>{
-	res.json({Username : 'sajak'})
-})
-
-
-//something is wrong with this route goota work on this shit
 app.get('/download', async (req, res, next) => {
 	try {
 		let url = req.query.url;
@@ -28,7 +21,7 @@ app.get('/download', async (req, res, next) => {
 		let title = 'audio';
 
 		await ytdl.getBasicInfo(url, {
-			format: 'mp3'
+			format: 'mp4'
 		}, (err, info) => {
 			if (err) throw err;
 			title = info.player_response.videoDetails.title.replace(/[^\x00-\x7F]/g, "");
@@ -39,14 +32,8 @@ app.get('/download', async (req, res, next) => {
 			format: 'mp3',
 			filter: 'audioonly',
 		}).pipe(res);
-		
+
 	} catch (err) {
 		console.error(err);
 	}
-
-	res.json({message : 'This route workss!!!'})
 });
-
-app.listen(port,() => {
-	console.log("Server works!!!")
-})
